@@ -17,6 +17,9 @@ class String
     ~String();
 
     size_t size() const;
+    size_t length() const;
+    size_t capacity() const;
+
     char& operator[](size_t index) const;
     String& operator=(const String& other)
     {
@@ -26,5 +29,6 @@ class String
         strcpy(data_, other.data_);
         return *this;
     };
+
     char* Data() const;
 };

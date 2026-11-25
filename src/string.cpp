@@ -35,6 +35,8 @@ String::String(const String& other)
 String::~String() { delete[] data_; }
 
 size_t String::size() const { return size_; }
+size_t String::length() const { return size_; };
+size_t String::capacity() const { return sizeof(size_t); }
 
 char& String::operator[](size_t index) const { return data_[index]; }
 
