@@ -1,6 +1,7 @@
 #include "../string.hpp"
-#include <cstring>
 #include <iostream>
+
+String::String() : data_(new char[1]{'\0'}) {};
 
 String::String(const char* other)
 {
@@ -24,6 +25,13 @@ String::String(const size_t& n, const char& c)
     data_[size_] = '\0';
 }
 
+String::String(const String& other)
+{
+    size_ = other.size_;
+    data_ = new char[other.size_ + 1];
+    strcpy(data_, other.data_);
+}
+
 String::~String() { delete[] data_; }
 
 size_t String::size() const { return size_; }
@@ -38,3 +46,11 @@ std::ostream& operator<<(std::ostream& os, const String& str)
     }
     return os;
 }
+
+// char* String::Data() const
+// {
+//     if (data_ == nullptr)
+//     {
+//         return
+//     }
+// };
