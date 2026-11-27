@@ -8,6 +8,7 @@ class String
   private:
     char* data_;
     size_t size_ = 0;
+    size_t capacity_ = 0;
 
   public:
     String();
@@ -16,19 +17,27 @@ class String
     String(const String& other);
     ~String();
 
-    size_t size() const;
-    size_t length() const;
-    size_t capacity() const;
+    size_t Size() const;
+    size_t Length() const;
+    size_t Capacity() const;
 
     char& operator[](size_t index) const;
     String& operator=(const String& other)
     {
+        if (this->capacity_ < other.capacity_)
+        {
+            size_ = other.size_;
+            capacity_ = size_;
+            delete[] data_;
+            data_ = new char[other.capacity_ + 1];
+            strcpy(data_, other.data_);
+            return *this;
+        }
         size_ = other.size_;
-        delete[] data_;
-        data_ = new char[other.size_ + 1];
         strcpy(data_, other.data_);
-        return *this;
     };
+
+    void PushBack(char c) {};
 
     char* Data() const;
 };
